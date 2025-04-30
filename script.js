@@ -1,12 +1,17 @@
 
 
-console.log("Hello World");
+console.log("Hello lets play!");
+console.log("First to earn 5 points wins the game!")
 
 let humanScore = 0
 
 let computerScore = 0
 
 let roundWinner = ''
+
+let round = 1
+
+
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*3);
@@ -40,35 +45,54 @@ function getHumanChoice(){
     }
 }
 
-function playRound(HChoice,CChoice){
-    if (HChoice === CChoice) {
-        roundWinner = 'tie'
+
+function playGame(humanScore,computerScore,round){
+
+    while (humanScore < 5 && computerScore < 5){
+
+        function playRound(HChoice,CChoice){
+            if (HChoice === CChoice) {
+                roundWinner = 'tie'
+            }
+        
+            if (
+                (CChoice === 'Rock' && HChoice === 'Scissors') ||
+                (CChoice === 'Scissors' && HChoice === 'Paper') ||
+                (CChoice === 'Paper' && HChoice === 'Rock')
+            )
+            {
+                computerScore++
+                round++
+                roundWinner = 'Computer'
+                console.log('You lost!')
+            }
+        
+            if (
+                (HChoice === 'Rock' && CChoice === 'Scissors') ||
+                (HChoice === 'Scissors' && CChoice === 'Paper') ||
+                (HChoice === 'Paper' && CChoice === 'Rock')
+            )
+            {
+                humanScore++
+                round++
+                roundWinner = 'Player'
+                console.log('You won!')
+            }
+        }
+
+        function UpdateScore(computerScore,humanScore,round){
+            console.log("=====SCORE=====")
+            console.log("Player: ",humanScore)
+            console.log("Computer: ",computerScore)
+            console.log("=====ROUND",round,"====")
+        }
+        
+        const CChoice = getComputerChoice();
+        const HChoice = getHumanChoice();
+        
+        playRound(HChoice,CChoice);
+        UpdateScore(computerScore,humanScore,round)
     }
 
-    if (
-        (CChoice === 'Rock' && HChoice === 'Scissors') ||
-        (CChoice === 'Scissors' && HChoice === 'Paper') ||
-        (CChoice === 'Paper' && HChoice === 'Rock')
-    )
-    {
-        computerScore++
-        roundWinner = 'Computer'
-        console.log('You lost!')
-    }
 
-    if (
-        (HChoice === 'Rock' && CChoice === 'Scissors') ||
-        (HChoice === 'Scissors' && CChoice === 'Paper') ||
-        (HChoice === 'Paper' && CChoice === 'Rock')
-    )
-    {
-        humanScore++
-        roundWinner = 'Player'
-        console.log('You won!')
-    }
 }
-
-const CChoice = getComputerChoice();
-const HChoice = getHumanChoice();
-
-playRound(HChoice,CChoice);
