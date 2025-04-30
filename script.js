@@ -2,21 +2,24 @@
 
 console.log("Hello World");
 
+let humanScore = 0
+
+let computerScore = 0
+
+let roundWinner = ''
+
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*3);
     switch(choice){
         case 0:
             console.log("Rock");
-            break
+            return "Rock"
         case 1:
             console.log("Paper");
-            break
+            return "Paper"
         case 2:
             console.log("Scissors");
-            break
-        default:
-            console.log("Invalid choice");
-            break
+            return "Scissors"
     }
 }
 
@@ -26,15 +29,46 @@ function getHumanChoice(){
     switch (HChoice){
         case 'rock':
             console.log("Rock");
-            break
+            return "Rock"
+            
         case 'paper':
             console.log("Paper");
-            break
+            return "Paper"
         case 'scissors':
             console.log("Scissors");
-            break
+            return "Scissors"
     }
 }
 
-getComputerChoice();
-getHumanChoice();
+function playRound(HChoice,CChoice){
+    if (HChoice === CChoice) {
+        roundWinner = 'tie'
+    }
+
+    if (
+        (CChoice === 'Rock' && HChoice === 'Scissors') ||
+        (CChoice === 'Scissors' && HChoice === 'Paper') ||
+        (CChoice === 'Paper' && HChoice === 'Rock')
+    )
+    {
+        computerScore++
+        roundWinner = 'Computer'
+        console.log('You lost!')
+    }
+
+    if (
+        (HChoice === 'Rock' && CChoice === 'Scissors') ||
+        (HChoice === 'Scissors' && CChoice === 'Paper') ||
+        (HChoice === 'Paper' && CChoice === 'Rock')
+    )
+    {
+        humanScore++
+        roundWinner = 'Player'
+        console.log('You won!')
+    }
+}
+
+const CChoice = getComputerChoice();
+const HChoice = getHumanChoice();
+
+playRound(HChoice,CChoice);
