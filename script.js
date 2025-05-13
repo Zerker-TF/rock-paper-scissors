@@ -2,7 +2,7 @@
 
 console.log("Hello lets play!");
 console.log("First to earn 5 points wins the game!")
-
+//GAME LOGIC
 
 function playGame(){
     let humanScore = 0
