@@ -45,51 +45,51 @@ function playGame(){
         }
     }
 
-    while (humanScore < 5 && computerScore < 5){
+    // while (humanScore < 5 && computerScore < 5){
 
-        function playRound(HChoice,CChoice){
-            if (HChoice === CChoice) {
-                roundWinner = 'tie'
-            }
+    //     function playRound(HChoice,CChoice){
+    //         if (HChoice === CChoice) {
+    //             roundWinner = 'tie'
+    //         }
         
-            if (
-                (CChoice === 'Rock' && HChoice === 'Scissors') ||
-                (CChoice === 'Scissors' && HChoice === 'Paper') ||
-                (CChoice === 'Paper' && HChoice === 'Rock')
-            )
-            {
-                computerScore++
-                round++
-                roundWinner = 'Computer'
-                console.log('You lost!')
-            }
+    //         if (
+    //             (CChoice === 'Rock' && HChoice === 'Scissors') ||
+    //             (CChoice === 'Scissors' && HChoice === 'Paper') ||
+    //             (CChoice === 'Paper' && HChoice === 'Rock')
+    //         )
+    //         {
+    //             computerScore++
+    //             round++
+    //             roundWinner = 'Computer'
+    //             console.log('You lost!')
+    //         }
         
-            if (
-                (HChoice === 'Rock' && CChoice === 'Scissors') ||
-                (HChoice === 'Scissors' && CChoice === 'Paper') ||
-                (HChoice === 'Paper' && CChoice === 'Rock')
-            )
-            {
-                humanScore++
-                round++
-                roundWinner = 'Player'
-                console.log('You won!')
-            }
-        }
+    //         if (
+    //             (HChoice === 'Rock' && CChoice === 'Scissors') ||
+    //             (HChoice === 'Scissors' && CChoice === 'Paper') ||
+    //             (HChoice === 'Paper' && CChoice === 'Rock')
+    //         )
+    //         {
+    //             humanScore++
+    //             round++
+    //             roundWinner = 'Player'
+    //             console.log('You won!')
+    //         }
+    //     }
 
-        function UpdateScore(computerScore,humanScore,round){
-            console.log("=====ROUND",round,"====")
-            console.log("=====SCORE=====")
-            console.log("Player: ",humanScore)
-            console.log("Computer: ",computerScore)
-        }
+    //     function UpdateScore(computerScore,humanScore,round){
+    //         console.log("=====ROUND",round,"====")
+    //         console.log("=====SCORE=====")
+    //         console.log("Player: ",humanScore)
+    //         console.log("Computer: ",computerScore)
+    //     }
         
-        const CChoice = getComputerChoice();
-        const HChoice = getHumanChoice();
+    //     const CChoice = getComputerChoice();
+    //     const HChoice = getHumanChoice();
         
-        playRound(HChoice,CChoice);
-        UpdateScore(computerScore,humanScore,round)
-    }
+    //     playRound(HChoice,CChoice);
+    //     UpdateScore(computerScore,humanScore,round)
+    // }
 
     if(humanScore === 5){
         console.log("Congratulations! You won!")
