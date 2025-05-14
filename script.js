@@ -4,7 +4,7 @@ console.log("Hello lets play!");
 console.log("First to earn 5 points wins the game!")
 //GAME LOGIC
 
-function playGame(){
+function playGame(Hchoice){
     let humanScore = 0
     
     let computerScore = 0
@@ -28,8 +28,8 @@ function playGame(){
         }
     }
     
-    function getHumanChoice(){
-        let HChoice = prompt("Choose Rock,Paper or Scissors");
+    function getHumanChoice(HChoice){
+       
     
         switch (HChoice){
             case 'rock':
@@ -45,52 +45,12 @@ function playGame(){
         }
     }
 
-    // while (humanScore < 5 && computerScore < 5){
-
-    //     function playRound(HChoice,CChoice){
-    //         if (HChoice === CChoice) {
-    //             roundWinner = 'tie'
-    //         }
-        
-    //         if (
-    //             (CChoice === 'Rock' && HChoice === 'Scissors') ||
-    //             (CChoice === 'Scissors' && HChoice === 'Paper') ||
-    //             (CChoice === 'Paper' && HChoice === 'Rock')
-    //         )
-    //         {
-    //             computerScore++
-    //             round++
-    //             roundWinner = 'Computer'
-    //             console.log('You lost!')
-    //         }
-        
-    //         if (
-    //             (HChoice === 'Rock' && CChoice === 'Scissors') ||
-    //             (HChoice === 'Scissors' && CChoice === 'Paper') ||
-    //             (HChoice === 'Paper' && CChoice === 'Rock')
-    //         )
-    //         {
-    //             humanScore++
-    //             round++
-    //             roundWinner = 'Player'
-    //             console.log('You won!')
-    //         }
-    //     }
-
-    //     function UpdateScore(computerScore,humanScore,round){
-    //         console.log("=====ROUND",round,"====")
-    //         console.log("=====SCORE=====")
-    //         console.log("Player: ",humanScore)
-    //         console.log("Computer: ",computerScore)
-    //     }
-        
-    //     const CChoice = getComputerChoice();
-    //     const HChoice = getHumanChoice();
-        
-    //     playRound(HChoice,CChoice);
-    //     UpdateScore(computerScore,humanScore,round)
-    // }
-
+    document.querySelectorAll('img[role="button"]').forEach(button => {
+        button.addEventListener('click',(event) => {
+            const HChoice = event.target.dataset.choice;
+            const result = getHumanChoice(Hchoice);
+        })
+    } );
     if(humanScore === 5){
         console.log("Congratulations! You won!")
     }
@@ -98,5 +58,8 @@ function playGame(){
         console.log("Too bad! You lost!")
     }
 
+
 }
+
+
 playGame();
