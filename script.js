@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     let humanScore = 0;
     let computerScore = 0;
+    let round = 1;
+
+
 
     function getComputerChoice() {
         const choices = ["rock", "paper", "scissors"];
@@ -18,14 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para abrir el popup y mostrar las imágenes
     function openPopupWithImage(humanChoice, computerChoice, humanImg, computerImg) {
-                // Dimensiones de la ventana
+        // Dimensiones de la ventana
         const width = 600;
         const height = 600;
-        
+
         // Obtener las dimensiones de la pantalla
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
-        
+
         // Calcular la posición del popup para centrarlo
         const left = (screenWidth - width) / 2;
         const top = (screenHeight - height) / 2;
@@ -36,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (popup) {
             const result = determineWinner(humanChoice, computerChoice);
             const winnerImage = result.winner === "Jugador" ? humanImg : computerImg;
+
 
             // Generamos el contenido del popup
             popup.document.write(`
@@ -48,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <img src="${computerImg}" alt="Imagen Computadora" style="max-width:30%; max-height:200px;"/>
                         </div>
                         <div style="margin-top:20px; font-size:24px; font-weight:bold;">
-                            <p>Ganador: ${result.winner}</p>
-                            <img src="${winnerImage}" alt="Imagen Ganador" style="max-width:150px; max-height:150px;"/>
-                            <p style="font-size:18px;">${result.winner} gana con ${result.winnerChoice}</p>
+                            <p>Winner: ${result.winner}</p>
+                            <img src="${winnerImage}" alt="Imagen Ganador" style="display:flex; justify-content:center; align-items:center;max-width:150px; max-height:150px;"/>
+                            <p style="font-size:18px;">${result.winner} wins with ${result.winnerChoice}</p>
                         </div>
                     </body>
                 </html>
@@ -59,12 +63,25 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             alert("Popup bloqueado por el navegador.");
         }
+
+        if (result.winner === "Human") {
+            humanScore++;
+            console.log(humanScore);
+        } else if (result.winner === "Computer") {
+            computerScore++;
+            console.log(computerScore);
+        }
+
+        if (humanScore === 5 || computerScore === 5) {
+            const winnerMessage = humanScore === 5 ? "¡Felicidades! ¡Ganaste!" : "¡Lo siento! ¡Perdiste!";
+            const winnerImage = humanScore === 5 ? humanImg : computerImg;
+        } 
     }
 
     // Lógica para determinar al ganador de la ronda
     function determineWinner(humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
-            return { winner: "Ninguno", winnerChoice: "Empate" };
+            return { winner: "No one", winnerChoice: "Tie" };
         }
         
         // Lógica de comparación para determinar el ganador
@@ -76,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const winner = outcomes[humanChoice][computerChoice];
         return { winner, winnerChoice: winner === "Human" ? humanChoice : computerChoice };
+
+        
+
+
     }
 
     // Agrega los listeners a las imágenes
@@ -92,4 +113,5 @@ document.addEventListener("DOMContentLoaded", () => {
             openPopupWithImage(humanChoice, computerChoice, humanImg, computerImg);
         });
     });
+
 });
