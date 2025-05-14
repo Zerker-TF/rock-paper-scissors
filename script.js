@@ -8,13 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function getComputerChoice() {
         const choices = ["rock", "paper", "scissors"];
         const randomIndex = Math.floor(Math.random() * choices.length);
-        console.log("Computadora:", choices[randomIndex]);
+        console.log("Computer:", choices[randomIndex]);
         return choices[randomIndex];
     }
 
     function getHumanChoice(choice) {
         const formattedChoice = choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
-        console.log("Jugador:", formattedChoice);
+        console.log("Human:", formattedChoice);
         return formattedChoice;
     }
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (popup) {
             const result = determineWinner(humanChoice, computerChoice);
-            const winnerImage = result.winner === "Jugador" ? humanImg : computerImg;
+            const winnerImage = result.winner === "Human" ? humanImg : computerImg;
 
 
             // Generamos el contenido del popup

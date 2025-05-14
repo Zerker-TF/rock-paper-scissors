@@ -1,8 +1,7 @@
 .hands{
     display: flex;
-    padding-inline: 100px;
-    gap: 900px;
     padding-top: 30px;
+    margin-left: 400px;
 }
 
 .buttons{
@@ -12,6 +11,13 @@
     align-items: left;
     
     overflow: hidden;
+}
+
+.score-board{
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #333;
 }
 
 .buttons img {
