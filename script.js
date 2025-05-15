@@ -3,6 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let computerScore = 0;
     let round = 1;
 
+    //DOM
+    const roundDisplay = document.getElementById("round");
+    const playerScoreDisplay = document.getElementById("playerScore");
+    const computerScoreDisplay = document.getElementById("computerScore");
+    const buttons = document.querySelectorAll(".buttons img");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playRound(button.dataset.choice);
+        })
+    })
 
 
     function getComputerChoice() {
@@ -10,12 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const randomIndex = Math.floor(Math.random() * choices.length);
         console.log("Computer:", choices[randomIndex]);
         return choices[randomIndex];
-    }
-
-    function getHumanChoice(choice) {
-        const formattedChoice = choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
-        console.log("Human:", formattedChoice);
-        return formattedChoice;
     }
 
 
@@ -99,6 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    function playRound(humanChoice, computerChoice, humanImg, computerImg) {
+        openPopupWithImage(humanChoice, computerChoice, humanImg, computerImg)
+    }
+
     // Agrega los listeners a las imágenes
     document.querySelectorAll('img[role="button"]').forEach(button => {
         button.addEventListener('click', (event) => {
@@ -109,8 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Imagenes para la computadora
             const computerImg = document.querySelector(`img[data-choice="${computerChoice.toLowerCase()}"]`).src;
 
-            // Abrir el popup con las imágenes y el resultado
-            openPopupWithImage(humanChoice, computerChoice, humanImg, computerImg);
+            // Abrir el popup con las imágenes y el resultado en playround
+            playRound(humanChoice, computerChoice, humanImg, computerImg);
+            
         });
     });
 
