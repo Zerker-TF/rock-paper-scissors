@@ -1,4 +1,4 @@
-# rock-paper-scissors
+# Rock-paper-scissors
 
 
 This is a simple Rock Paper Scissors game implemented using HTML, CSS, and JavaScript. You play against the computer, and the first to reach 5 points wins.
@@ -22,9 +22,9 @@ Popup window shows the round result with player choices.
 Automatically resets after a player reaches 5 points.
 
 # Screenshots
+![Main-Screen](https://github.com/Zerker-TF/rock-paper-scissors/blob/main/img/RPS-screen.png)
 
-
-
+![Popup-Screen](https://github.com/Zerker-TF/rock-paper-scissors/blob/main/img/RPS-result.png)
 
 # Installation
 
