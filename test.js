@@ -9,9 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const playerScoreDisplay = document.getElementById("playerScore");
     const computerScoreDisplay = document.getElementById("computerScore");
 
-    // Initialize the popup once
-    function initializePopup() {
-        resultPopup = window.open("", "popupWindow", "width=600,height=600");
+    // Initialize or reopen popup
+    function openPopup() {
+        if (!resultPopup || resultPopup.closed) {
+            resultPopup = window.open("", "popupWindow", "width=600,height=600,resizable,scrollbars=no");
+        }
         if (resultPopup) {
             resultPopup.document.write(`<html><head><title>Resultado de la Ronda</title></head><body style='margin:0; display:flex; flex-direction:column; justify-content:center; align-items:center; background-color:#f4f4f4; height:100vh;'></body></html>`);
             resultPopup.document.close();
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updatePopup(humanChoice, computerChoice, humanImg, computerImg, result) {
+        openPopup();
         if (resultPopup) {
             const winnerImage = result.winner === "Human" ? humanImg : computerImg;
             resultPopup.document.body.innerHTML = `
@@ -60,8 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         playerScoreDisplay.textContent = humanScore;
         computerScoreDisplay.textContent = computerScore;
-        roundDisplay.textContent = round;
-        round += 1;
+        roundDisplay.textContent = round++;
 
         updatePopup(humanChoice, computerChoice, humanImg, computerImg, result);
 
@@ -80,9 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         playerScoreDisplay.textContent = humanScore;
         computerScoreDisplay.textContent = computerScore;
         roundDisplay.textContent = round;
+        if (resultPopup && !resultPopup.closed) resultPopup.close();
     }
-
-    initializePopup();
 
     document.querySelectorAll('img[role="button"]').forEach(button => {
         button.addEventListener('click', (event) => {
