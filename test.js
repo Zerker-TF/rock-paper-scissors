@@ -11,9 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize or reopen popup
     function openPopup() {
+        const width = 600;
+        const height = 600;
+        const left = (window.screen.width - width) / 2;
+        const top = (window.screen.height - height) / 2;
+
         if (!resultPopup || resultPopup.closed) {
-            resultPopup = window.open("", "popupWindow", "width=600,height=600,resizable,scrollbars=no");
+            resultPopup = window.open("", "popupWindow", `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=no`);
+        } else {
+            resultPopup.focus();
         }
+
         if (resultPopup) {
             resultPopup.document.write(`<html><head><title>Resultado de la Ronda</title></head><body style='margin:0; display:flex; flex-direction:column; justify-content:center; align-items:center; background-color:#f4f4f4; height:100vh;'></body></html>`);
             resultPopup.document.close();
@@ -23,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function getComputerChoice() {
         const choices = ["rock", "paper", "scissors"];
         const randomIndex = Math.floor(Math.random() * choices.length);
-        console.log("Computer:", choices[randomIndex]);
         return choices[randomIndex];
     }
 
@@ -43,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p style="font-size:18px;">${result.winner} wins with ${result.winnerChoice}</p>
                 </div>
             `;
+            resultPopup.focus();
         }
     }
 
@@ -55,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function playRound(humanChoice, humanImg) {
         const computerChoice = getComputerChoice();
-        const computerImg = document.querySelector(`img[data-choice="${computerChoice.toLowerCase()}"]`).src;
+        const computerImg = document.querySelector(`img[data-choice='${computerChoice.toLowerCase()}']`).src;
         const result = determineWinner(humanChoice, computerChoice);
 
         if (result.winner === "Human") humanScore += 1;
